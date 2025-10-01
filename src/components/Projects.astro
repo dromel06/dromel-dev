@@ -1,0 +1,25 @@
+---
+const projects = [
+    { title: "Proyecto 1", img: "/images/proyecto1.png" },
+    { title: "Proyecto 2", img: "/images/proyecto2.png" },
+    { title: "Proyecto 3", img: "/images/proyecto3.png" },
+];
+---
+
+<section id="projects" class="py-12 bg-[#DCC9A9] text-[#4E6851]">
+    <h2 class="text-3xl font-bold text-center mb-8">Proyectos</h2>
+    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+        {
+            projects.map((p) => (
+                <div class="bg-[#4E6851] text-[#DCC9A9] rounded-lg shadow-lg overflow-hidden">
+                    <img
+                        src={p.img}
+                        alt={p.title}
+                        class="w-full h-40 object-cover"
+                    />
+                    <div class="p-4">{p.title}</div>
+                </div>
+            ))
+        }
+    </div>
+</section>

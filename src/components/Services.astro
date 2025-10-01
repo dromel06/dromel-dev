@@ -1,0 +1,63 @@
+---
+import Image from "astro/components/Image.astro";
+import calabazaImg from "../assets/imgs/calabaza.png";
+
+const services = [
+    {
+        name: "Páginas Web Sencillas",
+        content: `Un landing page es una página web enfocada en un objetivo específico, como presentar un producto, servicio o proyecto, y motivar al visitante a realizar una acción concreta.<br /><br />En un landing page se pueden incluir elementos como:<br />Información clara y visualmente atractiva.<br />Formularios de contacto o registro.<br />Botones de llamada a la acción (CTA).<br />Secciones optimizadas para destacar beneficios o características.<br />Su propósito principal es convertir visitantes en clientes potenciales o en usuarios interesados.`,
+    },
+    {
+        name: "Landings",
+        content: `Un landing page es una página web enfocada en un objetivo específico, como presentar un producto, servicio o proyecto, y motivar al visitante a realizar una acción concreta.<br /><br />En un landing page se pueden incluir elementos como:<br />Información clara y visualmente atractiva.<br />Formularios de contacto o registro.<br />Botones de llamada a la acción (CTA).<br />Secciones optimizadas para destacar beneficios o características.<br />Su propósito principal es convertir visitantes en clientes potenciales o en usuarios interesados.`,
+    },
+    {
+        name: "Ecommerces",
+        content: `Un landing page es una página web enfocada en un objetivo específico, como presentar un producto, servicio o proyecto, y motivar al visitante a realizar una acción concreta.<br /><br />En un landing page se pueden incluir elementos como:<br />Información clara y visualmente atractiva.<br />Formularios de contacto o registro.<br />Botones de llamada a la acción (CTA).<br />Secciones optimizadas para destacar beneficios o características.<br />Su propósito principal es convertir visitantes en clientes potenciales o en usuarios interesados.`,
+    },
+];
+---
+
+<section id="services" class="py-12 text-claro">
+    <div class="max-w-7xl mx-auto p-6 rounded-2xl">
+        <div
+            class="max-w-fit px-8 py-2 bg-primary rounded-t-2xl h-fit overflow-x-hidden"
+        >
+            <div class="flex justify-center">
+                <div class="group relative inline-block">
+                    <h2 class="text-3xl relative z-10">Servicios</h2>
+                    <span
+                        class="absolute -inset-0 -skew-x-30 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-300 pointer-events-none blur-sm"
+                        aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <div class="h-4xl">
+            <div
+                class="space-y-4 bg-primary p-6 rounded-2xl rounded-tl-none grid gap-4 md:grid-cols-4 lg:grid-cols-7 max-h-90"
+            >
+                <div class="rounded-lg w-fit col-span-1">
+                    <Image
+                        src={calabazaImg}
+                        alt="Servicios"
+                        width={200}
+                        class="rounded-lg absolute -mx-15 mt-20 shadow-accent-lg transform transition-transform duration-300 ease-in-out hover:scale-110 hover:-translate-y-2 hover:rotate-6 origin-center will-change-transform"
+                    />
+                </div>
+                {
+                    services.map((service) => (
+                        <div class="rounded-lg  col-span-2">
+                            <div class="bg-primary text-accent p-2 rounded-3xl border-8 border-darken shadow-[0_0_0_2px_theme('colors.primary')] -mt-20 rounded-b-none w-fit z-20">
+                                <h3 class="font-bold">{service.name}</h3>
+                            </div>
+
+                            <div class="bg-primary text-lighten p-2 rounded-3xl border-8 border-darken ring-2 ring-primary rounded-tl-none mx-auto z-10">
+                                <p class="mt-2" set:html={service.content} />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

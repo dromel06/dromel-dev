@@ -1,0 +1,18 @@
+// // tailwind.config.mjs
+// import { defineConfig } from 'tailwindcss'
+
+// export default defineConfig({
+//     content: [
+//         "./src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}",
+//     ],
+//     theme: {
+//         extend: {
+//             fontFamily: {
+//                 zekton: ['Zekton', 'cursive'],
+//             },
+//         },
+//     },
+//     plugins: [
+
+//     ],
+// })
