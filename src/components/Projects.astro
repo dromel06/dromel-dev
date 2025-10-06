@@ -1,25 +1,165 @@
 ---
-const projects = [
-    { title: "Proyecto 1", img: "/images/proyecto1.png" },
-    { title: "Proyecto 2", img: "/images/proyecto2.png" },
-    { title: "Proyecto 3", img: "/images/proyecto3.png" },
+import Image from "astro/components/Image.astro";
+import imgImage4 from "../assets/imgs/escarabajo.png";
+import iconRightArrow from "../assets/icons/right-icon.svg";
+import imgCoamco from "../assets/imgs/coamco.png";
+import imgRecital from "../assets/imgs/recital.png";
+import imgConejos from "../assets/imgs/conejos.png";
+
+var projects = [
+    {
+        title: "Coamco",
+        image: imgCoamco,
+        url: "https://coamco.com/",
+        description: `Landing Trabajada con una empresa de marketing para la empresa panameña coamco, un sitio amigable el cual busca potenciar las ventas y un contacto rapido con posibles clientes.`,
+    },
+    {
+        title: "Recital De Clarinete",
+        image: imgRecital,
+        url: "https://clarinetes-cdla.site/",
+        description: `Web Hecha para la promoción de un recital de clarinete en la ciudad de las artes, el sitio esta lleno de animaciones, el planeamiento de las distintas presentaciones e información de las piezas que se tocaron.`,
+    },
+    {
+        title: "Conejos Panama",
+        image: imgConejos,
+        url: false,
+        description: `Una web para administrar la venta de conejos de una granja, permite reservar los conejos que estes interesado en comprar y al admin le entrega un reporte con la informacion de los clientes y donde encontrarse`,
+    },
 ];
 ---
 
-<section id="projects" class="py-12 bg-[#DCC9A9] text-[#4E6851]">
-    <h2 class="text-3xl font-bold text-center mb-8">Proyectos</h2>
-    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-        {
-            projects.map((p) => (
-                <div class="bg-[#4E6851] text-[#DCC9A9] rounded-lg shadow-lg overflow-hidden">
-                    <img
-                        src={p.img}
-                        alt={p.title}
-                        class="w-full h-40 object-cover"
-                    />
-                    <div class="p-4">{p.title}</div>
-                </div>
-            ))
-        }
+<section class="w-max-6xl" id="projects">
+    <!-- ServiceDiv -->
+    <div class="flex justify-center pb-[300px]">
+        <div
+            class="grid grid-cols-3 gap-4 bg-accent min-h-[208px] rounded-bl-[25px] rounded-tl-[25px] mt-10 w-6xl px-12 shadow-accent shadow-xs"
+        >
+            {
+                projects.map((project) => (
+                    <div class="h-20 rounded-[25px] top-42 w-full -mt-4 ">
+                        <div class="relative -mt-8 bg-secondary rounded-[25px] rounded-bl-none project-card-title p-2 shadow-secondary shadow-md ">
+                            <p class="relative  rounded-[25px] w-full px-4 py-2 text-xl  z-10 text-accent text-shadow-zinc-950">
+                                {project.title}
+                            </p>
+                            <div class="relative p-2" data-name="image 4">
+                                <Image
+                                    src={project.image}
+                                    alt="Decoración"
+                                    class="rounded-[15px] shadow-lg"
+                                />
+                            </div>
+                        </div>
+                        <div class="relative bg-secondary rounded-b-[30px] w-70 shadow-xs shadow-secondary p-4 ">
+                            <div class="relative rounded-[28px] w-full px-4 z-10 text-claro">
+                                <span
+                                    class="text-sm p-0"
+                                    set:html={project.description}
+                                />
+                            </div>
+                            <div class="absolute -top-2 -right-10">
+                                <div
+                                    class={
+                                        project.url === false
+                                            ? "group bg-gray-400 text-claro p-1 rounded-[15px] transition duration-300 shadow-sm shadow-gray-600"
+                                            : "group bg-primary text-claro p-1 rounded-[15px] transition duration-300 shadow-sm shadow-primary"
+                                    }
+                                >
+                                    {project.url === false ? (
+                                        <div
+                                            class="flex items-center justify-center opacity-50 pointer-events-none p-1 group-hover:opacity-60"
+                                            aria-disabled="true"
+                                            title="Proyecto no disponible"
+                                        >
+                                            <Image
+                                                src={iconRightArrow}
+                                                alt="No disponible"
+                                                class="w-8 h-8 opacity-70 transition-transform duration-200"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <a
+                                            href={
+                                                typeof project.url === "string"
+                                                    ? project.url
+                                                    : undefined
+                                            }
+                                            class="flex items-center justify-center rounded-[12px] p-1 hover:bg-grayish focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-secondary transform transition duration-200 group-hover:scale-105"
+                                            aria-label={`Abrir ${project.title}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Image
+                                                src={iconRightArrow}
+                                                alt={`Abrir ${project.title}`}
+                                                class="w-8 h-8 transform transition-transform duration-200 group-hover:translate-x-1"
+                                            />
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div
+            id="projects-title"
+            class="relative bg-accent rounded-[25px] rounded-bl-none py-2 shadow-accent shadow-xs -z-10"
+            data-name="projects-title"
+        >
+            <p
+                class="font-normal leading-[normal] not-italic text-[32px] text-center text-darken w-[228px]"
+            >
+                Projects
+            </p>
+            <div class="relative" data-name="image 4">
+                <Image
+                    src={imgImage4}
+                    alt="Decoración"
+                    class="absolute -top-16 drop-shadow-secondary drop-shadow-lg"
+                />
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    #projects-title::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: -20px;
+        top: 20px;
+        border-radius: 0 0 25px 0;
+        z-index: 2;
+        box-shadow: 4px 4px 0px 4px var(--color-accent);
+    }
+
+    /* .project-card-title::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        right: -34px;
+        bottom: -4px;
+        border-radius: 0 0 0 50px;
+        z-index: 2;
+        border: 3px solid var(--color-secondary);
+        border-right: none;
+        border-top: none;
+        box-shadow: -3px 3px 0px 3px var(--color-darken);
+    }
+
+    .project-card-title::before {
+        content: "";
+        position: absolute;
+        width: 110%;
+        height: 4px;
+        z-index: 1;
+        left: -4px;
+        bottom: -4px;
+        background-color: var(--color-darken);
+    } */
+</style>

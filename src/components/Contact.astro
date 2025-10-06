@@ -1,28 +1,42 @@
 ---
-
+import { Image } from "astro:assets";
+import imgLibelula from "../assets/imgs/libelula.png";
 ---
 
-<section id="contact" class="py-12 bg-[#4E6851] text-[#DCC9A9] text-center">
+<section
+    id="contact"
+    class="relative py-12 bg-primary text-[#DCC9A9] text-center max-w-2xl mx-auto rounded-[30px] shadow-primary shadow-md mb-16 px-8"
+>
     <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-    <p class="mb-6">¿Quieres una página web? Escríbeme aquí:</p>
-    <form class="max-w-md mx-auto space-y-4">
-        <input
-            type="text"
-            placeholder="Tu nombre"
-            class="w-full p-2 rounded text-black"
+    <p class="mb-6">Necesitas una página web? Escríbeme aquí:</p>
+
+    <div class="flex flex-col md:flex-row gap-8">
+        <form class="w-full max-w-md mx-auto space-y-4">
+            <input
+                type="text"
+                placeholder="Tu nombre"
+                class="w-full p-2 rounded text-black"
+            />
+            <input
+                type="email"
+                placeholder="Tu correo"
+                class="w-full p-2 rounded text-black"
+            />
+            <textarea
+                placeholder="Tu mensaje"
+                class="w-full p-2 rounded text-black"></textarea>
+            <button
+                type="submit"
+                class="bg-secondary text-accent px-6 py-2 rounded font-bold"
+            >
+                Enviar
+            </button>
+        </form>
+
+        <Image
+            src={imgLibelula}
+            alt="Contacto - persona trabajando en laptop"
+            class="absolute w-64 top-0 -right-30 drop-shadow-sm drop-shadow-primary mx-auto"
         />
-        <input
-            type="email"
-            placeholder="Tu correo"
-            class="w-full p-2 rounded text-black"
-        />
-        <textarea placeholder="Tu mensaje" class="w-full p-2 rounded text-black"
-        ></textarea>
-        <button
-            type="submit"
-            class="bg-[#B8EA2D] text-[#4E6851] px-6 py-2 rounded font-bold"
-        >
-            Enviar
-        </button>
-    </form>
+    </div>
 </section>
