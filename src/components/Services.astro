@@ -18,13 +18,13 @@ var services = [
 ];
 ---
 
-<section class="w-max-6xl" id="services">
+<section class="md:w-max-6xl flex justify-center p-8" id="services">
     <!-- ServiceDiv -->
-    <div class="flex justify-center pb-[300px]">
+    <div
+        class="flex flex-col sm:flex-row items-center md:items-stretch md:justify-center"
+    >
         <div
-            id="services-title"
-            class="relative bg-primary rounded-bl-[25px] rounded-tl-[15px] rounded-tr-[15px] py-2"
-            data-name="services-title"
+            class="relative bg-primary rounded-t-[25px] md:rounded-bl-[25px] py-2 md:services-title w-fit md:w-auto"
         >
             <p
                 class="font-normal leading-[normal] not-italic text-[32px] text-center text-claro w-[228px]"
@@ -32,22 +32,26 @@ var services = [
                 Services
             </p>
             <div class="relative" data-name="image 4">
-                <Image src={imgImage4} alt="Decoración" class="absolute" />
+                <Image
+                    src={imgImage4}
+                    alt="Decoración"
+                    class="w-32 md:w-auto md:absolute"
+                />
             </div>
         </div>
 
         <div
-            class="grid grid-cols-3 gap-4 bg-primary min-h-[208px] rounded-br-[25px] rounded-tr-[25px] mt-10 w-6xl px-12"
+            class="grid md:grid-cols-3 gap-4 bg-primary min-h-[208px] rounded-[25px] md:rounded-l-none md:mt-10 md:w-6xl md:px-12 sm:grid-cols-1"
         >
             {
                 services.map((service) => (
-                    <div class="h-20 rounded-[25px] top-42 w-full -mt-5">
-                        <div class="relative -mt-8 border-4 border-darken ring-primary ring-3 w-50 rounded-t-[25px] service-card-title">
-                            <p class="relative bg-primary rounded-[25px] w-full px-4 py-2 text-lg z-10 text-accent">
+                    <div class="md:h-20 rounded-[25px] md:top-42 w-full md:-mt-5">
+                        <div class="relative md:-mt-8 border-4 border-darken ring-primary ring-3 md:w-50 rounded-t-[25px] service-card-title">
+                            <p class="relative bg-primary rounded-[25px] w-full px-4 py-2 text-lg z-10 text-accent ">
                                 {service.title}
                             </p>
                         </div>
-                        <div class="relative border-4 border-darken ring-primary ring-3 rounded-[30px] bg-darken rounded-tl-none w-full m-w-[350px]">
+                        <div class="relative border-4 border-darken ring-primary ring-3 rounded-[30px] bg-darken rounded-t-none md:rounded-tr-[25px] w-full m-w-[350px]">
                             <div class="relative bg-primary rounded-[28px] w-full p-4 z-10 text-claro text-sm">
                                 <span set:html={service.description} />
                             </div>
@@ -60,7 +64,7 @@ var services = [
 </section>
 
 <style>
-    #services-title::after {
+    .services-title::after {
         content: "";
         position: absolute;
         width: 20px;
@@ -70,6 +74,7 @@ var services = [
         border-radius: 0 0 0 25px;
         z-index: 2;
         box-shadow: -4px 4px 0px 4px var(--color-primary);
+        background-color: aquamarine;
     }
 
     .service-card-title::after {
@@ -84,17 +89,22 @@ var services = [
         border: 3px solid var(--color-primary);
         border-right: none;
         border-top: none;
-        box-shadow: -3px 3px 0px 3px var(--color-darken);
+        box-shadow: -5px 3px 0px 3px var(--color-darken);
+    }
+    @media (max-width: 768px) {
+        .service-card-title::after {
+            display: none;
+        }
     }
 
     .service-card-title::before {
         content: "";
         position: absolute;
-        width: 110%;
-        height: 4px;
+        width: calc(100% + 8px);
+        height: 5px;
         z-index: 1;
         left: -4px;
-        bottom: -4px;
+        bottom: -5px;
         background-color: var(--color-darken);
     }
 </style>
