@@ -28,19 +28,19 @@ var projects = [
 ];
 ---
 
-<section class="w-full md:w-max-6xl" id="projects">
+<section class="w-full lg:w-max-6xl" id="projects">
     <!-- ServiceDiv -->
     <div
-        class="flex flex-col-reverse items-center justify-center md:items-stretch md:flex-row md:py-[300px] p-8"
+        class="flex flex-col-reverse items-center justify-center lg:items-stretch lg:flex-row lg:py-[300px] p-8"
     >
         <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-8 bg-accent min-h-[208px] rounded-[25px] md:rounded-r-none md:mt-10 md:w-6xl px-4 py-8 md:px-12 shadow-accent shadow-xs z-10 -mt-4"
+            class="grid grid-cols-1 lg:grid-cols-3 gap-4 bg-accent min-h-[208px] rounded-[25px] lg:rounded-r-none lg:mt-10 lg:w-6xl p-4 lg:px-12 -mt-1"
         >
             {
                 projects.map((project) => (
-                    <div class="md:h-20 rounded-[25px] md:top-42 w-full md:-mt-4 ">
-                        <div class="relative md:-mt-8 bg-secondary rounded-[25px] rounded-bl-none project-card-title p-2 shadow-secondary shadow-md flex flex-col items-center justify-between">
-                            <p class="relative  rounded-[25px] w-full px-4 py-2 text-xl  z-10 text-accent text-shadow-zinc-950">
+                    <div class="lg:h-20 rounded-[25px] lg:top-42 w-full lg:-mt-4 drop-shadow-lg drop-shadow-secondary ">
+                        <div class="relative lg:-mt-8 bg-secondary rounded-[25px] rounded-bl-none project-card-title p-2 shadow-secondary shadow-md flex flex-col items-center justify-between">
+                            <p class="relative  rounded-[25px] w-full px-4 py-2 text-xl  z-10 text-accent text-shadow-zinc-950 ">
                                 {project.title}
                             </p>
                             <div class="relative p-2" data-name="image 4">
@@ -51,8 +51,8 @@ var projects = [
                                 />
                             </div>
                         </div>
-                        <div class="relative bg-secondary rounded-b-[30px] w-5/6 md:w-70 shadow-xs shadow-secondary p-3 flex items-top justify-between">
-                            <div class="relative rounded-[28px] md:w-full px-2 z-10 text-claro">
+                        <div class="relative bg-secondary rounded-b-[30px] w-5/6 lg:w-70 shadow-xs  p-3 flex items-top justify-between ">
+                            <div class="relative rounded-[28px] lg:w-full px-2 z-10 text-claro">
                                 <span
                                     class="text-sm p-0"
                                     set:html={project.description}
@@ -106,20 +106,18 @@ var projects = [
         </div>
 
         <div
-            id=""
-            class="relative bg-accent rounded-[25px] rounded-b-none md:rounded-bl-none py-2 shadow-accent shadow-xs -z-10 projects-title"
-            data-name="projects-title"
+            class="relative bg-accent rounded-[25px] rounded-b-none lg:rounded-br-[25px] lg:rounded-bl-none py-2 projects-title -0"
         >
             <p
                 class="font-normal leading-[normal] not-italic text-[32px] text-center text-darken w-[228px]"
             >
                 Projects
             </p>
-            <div class="relative" data-name="image 4">
+            <div class="relative h-content" data-name="image 4">
                 <Image
                     src={imgImage4}
                     alt="Decoración"
-                    class="w-32 md:w-auto md:absolute -top-16 drop-shadow-secondary drop-shadow-lg"
+                    class="w-30 lg:w-auto absolute -top-18 -end-20 lg:end-0 z-20 drop-shadow-darken drop-shadow-lg"
                 />
             </div>
         </div>
@@ -139,9 +137,24 @@ var projects = [
         box-shadow: 4px 4px 0px 4px var(--color-accent);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
+        .projects-title::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -20px;
+            bottom: 4px;
+            border-radius: 0 0 0 25px;
+            box-shadow: -4px 4px 0px 3px var(--color-accent);
+        }
         .projects-title::after {
-            display: none;
+            left: auto;
+            top: auto;
+            left: -20px;
+            bottom: 4px;
+            border-radius: 0 0 25px 0;
+            box-shadow: 4px 4px 0px 3px var(--color-accent);
         }
     }
 </style>

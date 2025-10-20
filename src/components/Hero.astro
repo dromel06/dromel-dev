@@ -1,21 +1,47 @@
 ---
 import Image from "astro/components/Image.astro";
 import imgRobot from "../assets/imgs/robot.png";
+import iconGitHub from "../assets/icons/github.svg";
+import iconInstagram from "../assets/icons/instagram.svg";
+import iconLinkedIn from "../assets/icons/linkedin.svg";
+
+const socials = [
+    {
+        name: "GitHub",
+        href: "https://github.com/dromel06",
+        icon: iconGitHub,
+        aria: "GitHub",
+    },
+    {
+        name: "Instagram",
+        href: "https://instagram.com/dromel06",
+        icon: iconInstagram,
+        aria: "Instagram",
+    },
+    {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/in/dromel/",
+        icon: iconLinkedIn,
+        aria: "LinkedIn",
+    },
+];
 ---
 
-<section class="text-center my-16 justify-center max-w-6xl mx-auto">
+<section class="w-screen px-8 mt-8 mb-20 justify-center lg:max-w-6xl mx-auto">
     <div class="flex flex-col gap-2">
-        <div class="relative">
+        <div class="relative mb-8">
             <div
-                class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-primary text-lighten inline-block px-6 py-3 rounded-full text-3xl z-1 border-4 border-darken "
+                class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-primary text-lighten inline-block px-6 py-3 rounded-full text-3xl z-1 border-4 border-darken"
             >
-            <h1 class="text-3xl  text-shadow-accent text-shadow-2xs">
-                DROMEL DEV
-            </h1>
+                <h1
+                    class="text-xl lg:text-3xl text-shadow-accent text-shadow-2xs"
+                >
+                    DROMEL DEV
+                </h1>
             </div>
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex flex-col lg:flex-row gap-2">
             <div
                 class="relative flex-1 bg-secondary flex items-center rounded-[30px] h-[200px] shadow-secondary shadow-md"
             >
@@ -23,12 +49,11 @@ import imgRobot from "../assets/imgs/robot.png";
                     <Image
                         src={imgRobot}
                         alt="Robot"
-                        width="200"
-                        class="absolute bottom-0 left-0 -scale-x-100 rounded-br-[25px] drop-shadow-2xl drop-shadow-zinc-950"
+                        class="absolute bottom-0 left-0 -scale-x-100 rounded-br-[25px] drop-shadow-2xl drop-shadow-zinc-950 w-28 md:w-50"
                     />
                 </div>
                 <div
-                    class="text-lighten px-4 py-2 text-2xl text-center w-full drop-shadow-zinc-950 drop-shadow-2xl"
+                    class="text-lighten px-4 py-2 text-2xl lg:text-center text-end w-full drop-shadow-zinc-950 drop-shadow-2xl"
                 >
                     Hello, <br />I'm <span
                         class="text-3xl font-bold text-accent"
@@ -45,7 +70,7 @@ import imgRobot from "../assets/imgs/robot.png";
                     class="w-full flex flex-col justify-around items-center p-4"
                 >
                     <div
-                        class="text-lighten px-4 py-2 text-xl text-center w-full drop-shadow-zinc-950 drop-shadow-xl"
+                        class="text-lighten px-4 py-2 text-xl text-start lg:text-center w-full drop-shadow-zinc-950 drop-shadow-xl"
                     >
                         I create <br /><span
                             class="text-2xl font-bold text-accent"
@@ -55,75 +80,27 @@ import imgRobot from "../assets/imgs/robot.png";
                 </div>
                 <div class="flex flex-col items-center gap-3 px-4">
                     <div class="flex flex-col gap-3 items-center">
-                        <a
-                            href="https://github.com/your-username"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="GitHub"
-                            class="p-2 rounded-full bg-darken hover:bg-accent transition text-lighten"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.43-2.71 5.41-5.29 5.69.42.37.8 1.1.8 2.22 0 1.6-.01 2.89-.01 3.28 0 .31.21.67.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
-                                ></path>
-                            </svg>
-                        </a>
-
-                        <a
-                            href="https://twitter.com/your-username"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Twitter"
-                            class="p-2 rounded-full bg-darken hover:bg-accent transition text-lighten"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M22.46 6c-.77.35-1.6.58-2.47.69a4.3 4.3 0 0 0 1.88-2.37 8.6 8.6 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.14 12.14 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.32 5.71c-.66-.02-1.28-.2-1.82-.5v.05a4.28 4.28 0 0 0 3.43 4.2c-.3.08-.62.12-.95.12-.23 0-.46-.02-.68-.06a4.29 4.29 0 0 0 4 2.98A8.6 8.6 0 0 1 2 19.54 12.14 12.14 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.35-.02-.53A8.36 8.36 0 0 0 22.46 6z"
-                                ></path>
-                            </svg>
-                        </a>
-
-                        <a
-                            href="https://linkedin.com/in/your-username"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="LinkedIn"
-                            class="p-2 rounded-full bg-darken hover:bg-accent transition text-lighten"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M4.98 3.5a2.88 2.88 0 1 1 0 5.75 2.88 2.88 0 0 1 0-5.75zM3.5 9.5h3v11h-3v-11zM9.5 9.5h2.86v1.5h.04c.4-.76 1.37-1.56 2.82-1.56 3.02 0 3.58 1.99 3.58 4.58v6.47h-3v-5.74c0-1.37-.02-3.13-1.91-3.13-1.91 0-2.2 1.49-2.2 3.03v5.84h-3v-11z"
-                                ></path>
-                            </svg>
-                        </a>
+                        {
+                            socials.map((s) => (
+                                <a
+                                    href={s.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={s.aria}
+                                    class="bg-darken hover:bg-accent transition p-1 rounded-full "
+                                >
+                                    <Image
+                                        src={s.icon}
+                                        alt={s.aria}
+                                        format="svg"
+                                        loading="eager"
+                                        class="w-10"
+                                    />
+                                </a>
+                            ))
+                        }
                     </div>
                 </div>
-                <!-- <div>
-                    <Image
-                        src={imgRobot}
-                        alt="Robot"
-                        width="200"
-                        class="absolute bottom-0 right-0 rounded-bl-[25px] drop-shadow-2xl drop-shadow-zinc-950"
-                    />
-                </div> -->
             </div>
         </div>
 
@@ -131,11 +108,13 @@ import imgRobot from "../assets/imgs/robot.png";
             <div
                 class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 border-4 border-darken rounded-[30px] bg-darken z-1"
             >
-                <div
-                    class="bg-secondary text-lighten px-8 py-2 rounded-[25px] text-xl z-1 hover:bg-accent hover:text-darken cursor-pointer transition duration-300 shadow-md shadow-secondary hover:shadow-accent"
-                >
-                    Contactar
-                </div>
+                <a href="#contact" class="no-underline">
+                    <div
+                        class="bg-secondary text-lighten px-8 py-2 rounded-[25px] text-xl z-1 hover:bg-accent hover:text-darken cursor-pointer transition duration-300 shadow-md shadow-secondary hover:shadow-accent"
+                    >
+                        Contactar
+                    </div>
+                </a>
             </div>
         </div>
     </div>
