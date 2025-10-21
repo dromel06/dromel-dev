@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import imgLibelula from "../assets/imgs/libelula.png";
+
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
 <section
@@ -11,19 +13,23 @@ import imgLibelula from "../assets/imgs/libelula.png";
     <p class="mb-6">Necesitas una página web? Escríbeme aquí:</p>
 
     <div class="flex flex-collg:flex-row gap-8">
-        <form class="lg:max-wlg space-y-4">
+        <form class="lg:max-wlg space-y-4" id="form" method="post">
+            <input type="hidden" name="access_key" value={formKey} />
             <input
                 type="text"
+                name="name"
                 placeholder="Tu nombre"
                 class="w-full p-2 rounded text-black"
             />
             <input
                 type="email"
+                name="email"
                 placeholder="Tu correo"
                 class="w-full p-2 rounded text-black"
             />
             <textarea
                 placeholder="Tu mensaje"
+                name="message"
                 class="w-full p-2 rounded text-black"></textarea>
             <button
                 type="submit"
@@ -39,4 +45,50 @@ import imgLibelula from "../assets/imgs/libelula.png";
             class="absolute w-24 lg:w-64 lg:top-0 -top-2 end-0 lg:-right-30 drop-shadow-sm lg:drop-shadow-primary drop-shadow-secondary mx-auto"
         />
     </div>
+
+    <script type="text/javascript">
+        document
+            .getElementById("form")
+            .addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const submitButton = this.querySelector(
+                    "button[type='submit']"
+                );
+                const originalText = submitButton.textContent;
+
+                try {
+                    submitButton.textContent = "Enviando...";
+                    submitButton.disabled = true;
+                    const response = await fetch(
+                        "https://api.web3forms.com/submit",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Accept: "application/json",
+                            },
+                            body: JSON.stringify(Object.fromEntries(formData)),
+                        }
+                    );
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert("El Mensaje se ha enviado Exitosamente!");
+                        this.reset();
+                    } else {
+                        alert("Hubo un error al enviar el mensaje.");
+                        console.error("Error Result:", result);
+                    }
+                } catch (error) {
+                    alert("Hubo un error al enviar el mensaje.");
+                    console.error("Error:", error);
+                } finally {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }
+            });
+    </script>
 </section>
