@@ -6,7 +6,7 @@ export const languageList = {
 export const labels = {
     en: {
         greeting: "Hello, <br />I'm <span class='text-3xl font-bold text-accent'>Diomedes <br /></span>Software Developer.",
-        greeting2: "I create <br /><span class='text-2xl font-bold text-accent'>web applications</span>, <br />mobile applications and more.",
+        greeting2: "I create <br /><span class='text-2xl font-bold text-accent'>web pages</span>, <br />mobile applications and more.",
         contact: "Contact",
 
         service_title: "Services",
@@ -41,7 +41,7 @@ export const labels = {
     },
     es: {
         greeting: "Hola, <br />Soy <span class='text-3xl font-bold text-accent'>Diomedes <br /></span>Desarrollador de Software.",
-        greeting2: "Creo <br /><span class='text-2xl font-bold text-accent'>aplicaciones web</span>, <br />aplicaciones móviles y más.",
+        greeting2: "Creo <br /><span class='text-2xl font-bold text-accent'>paginas web</span>, <br />aplicaciones móviles y más.",
         contact: "Contacto",
 
         service_title: "Servicios",
