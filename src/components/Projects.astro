@@ -5,25 +5,30 @@ import iconRightArrow from "../assets/icons/right-icon.svg";
 import imgCoamco from "../assets/imgs/coamco.png";
 import imgRecital from "../assets/imgs/recital.png";
 import imgConejos from "../assets/imgs/conejos.png";
+import { languageList } from "../i18n/ui";
+import { useTranslation } from "../i18n/utils";
+
+const currentLang = Astro.currentLocale || "es";
+const t = useTranslation(currentLang as keyof typeof languageList);
 
 var projects = [
     {
-        title: "Coamco",
+        title: t("projects_project1_title"),
         image: imgCoamco,
         url: "https://coamco.com/",
-        description: `Landing Trabajada con una empresa de marketing para la empresa panameña coamco, un sitio amigable el cual busca potenciar las ventas y un contacto rapido con posibles clientes.`,
+        description: t("projects_project1_description"),
     },
     {
-        title: "Recital De Clarinete",
+        title: t("projects_project2_title"),
         image: imgRecital,
         url: "https://clarinetes-cdla.site/",
-        description: `Web Hecha para la promoción de un recital de clarinete en la ciudad de las artes, el sitio esta lleno de animaciones, el planeamiento de las distintas presentaciones e información de las piezas que se tocaron.`,
+        description: t("projects_project1_description"),
     },
     {
-        title: "Conejos Panama",
+        title: t("projects_project3_title"),
         image: imgConejos,
         url: false,
-        description: `Una web para administrar la venta de conejos de una granja, permite reservar los conejos que estes interesado en comprar y al admin le entrega un reporte con la informacion de los clientes y donde encontrarse`,
+        description: t("projects_project1_description"),
     },
 ];
 ---
@@ -111,7 +116,7 @@ var projects = [
             <p
                 class="font-normal leading-[normal] not-italic text-[32px] text-center text-darken w-[228px]"
             >
-                Projects
+                {t("projects_title")}
             </p>
             <div class="relative h-content" data-name="image 4">
                 <Image

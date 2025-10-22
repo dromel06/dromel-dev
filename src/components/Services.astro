@@ -1,20 +1,15 @@
 ---
 import Image from "astro/components/Image.astro";
 import imgImage4 from "../assets/imgs/calabaza.png";
+import { languageList } from "../i18n/ui";
+import { useTranslation } from "../i18n/utils";
+const currentLang = Astro.currentLocale || "es";
+const t = useTranslation(currentLang as keyof typeof languageList);
 
 var services = [
-    {
-        title: "Landing Pages",
-        description: `Un landing page es una página web enfocada en un objetivo específico, como presentar un producto, servicio o proyecto, y motivar al visitante a realizar una acción concreta.<br/><br/>En un landing page se pueden incluir elementos como:<ul><li>- Información clara y visualmente atractiva.</li><li>- Formularios de contacto o registro.</li><li>- Botones de llamada a la acción (CTA).</li><li>- Secciones optimizadas para destacar beneficios o características.</li></ul><br/>Su propósito principal es convertir visitantes en clientes potenciales o en usuarios interesados.`,
-    },
-    {
-        title: "WebViews",
-        description: `Implementación de WebViews en aplicaciones móviles para Android e iOS, lo que permite mostrar contenido web dentro de una app nativa de forma fluida y segura.<br/><br/>Con esta integración es posible:<ul><li>- Incluir páginas web, sistemas o formularios dentro de la aplicación.</li><li>- Garantizar compatibilidad multiplataforma usando WKWebView en iOS y WebView en Android.</li><li>- Personalizar la interfaz para mantener la identidad visual de la app.</li></ul><br/>Esta solución es ideal para proyectos que combinan desarrollo web con aplicaciones móviles, ofreciendo flexibilidad y un acceso unificado a la información.`,
-    },
-    {
-        title: "Otros Desarrollos",
-        description: `Además de landing pages y la integración de WebViews, también ofrezco otros servicios de desarrollo:<br/><br/><ul><li>- Sistemas web: creación de plataformas de gestión y administración en línea (ejemplo: sistema para facturación y control de clientes).</li><li>- E-commerce: desarrollo de tiendas en línea con carrito de compras, pasarela de pago y gestión de productos (ejemplo: tienda virtual para venta de ropa).</li><li>- Automatización y APIs: integración de servicios externos y automatización de procesos mediante APIs (ejemplo: conexión con sistemas de pago o envío de correos automáticos).</li></ul>`,
-    },
+    t("services_service1"),
+    t("services_service2"),
+    t("services_service3"),
 ];
 ---
 
@@ -29,7 +24,7 @@ var services = [
             <p
                 class="font-normal leading-[normal] not-italic text-[32px] text-center text-claro w-[228px]"
             >
-                Services
+                {t("service_title")}
             </p>
             <div class="relative" data-name="image 4">
                 <Image

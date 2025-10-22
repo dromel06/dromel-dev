@@ -5,6 +5,11 @@ import iconGitHub from "../assets/icons/github.svg";
 import iconInstagram from "../assets/icons/instagram.svg";
 import iconLinkedIn from "../assets/icons/linkedin.svg";
 
+import { languageList } from "../i18n/ui";
+import { useTranslation } from "../i18n/utils";
+const currentLang = Astro.currentLocale || "es";
+const t = useTranslation(currentLang as keyof typeof languageList);
+
 const socials = [
     {
         name: "GitHub",
@@ -55,11 +60,7 @@ const socials = [
                 <div
                     class="text-lighten px-4 py-2 text-2xl lg:text-center text-end w-full drop-shadow-zinc-950 drop-shadow-2xl"
                 >
-                    Hello, <br />I'm <span
-                        class="text-3xl font-bold text-accent"
-                    >
-                        Diomedes <br />
-                    </span>Software Developer.
+                    <Fragment set:html={t("greeting")} />
                 </div>
             </div>
 
@@ -72,13 +73,22 @@ const socials = [
                     <div
                         class="text-lighten px-4 py-2 text-xl text-start lg:text-center w-full drop-shadow-zinc-950 drop-shadow-xl"
                     >
-                        I create <br /><span
-                            class="text-2xl font-bold text-accent"
-                            >web applications</span
-                        >, <br />mobile applications and more.
+                        <Fragment set:html={t("greeting2")} />
                     </div>
                 </div>
+
                 <div class="flex flex-col items-center gap-3 px-4">
+                    <div class="pt-2">
+                        <a
+                            href={currentLang === "en" ? "/" : "/en"}
+                            aria-label={currentLang === "en"
+                                ? "Cambiar a español"
+                                : "Switch to English"}
+                            class="bg-darken hover:bg-accent text-lighten px-3 py-1 rounded-md transition text-sm"
+                        >
+                            {currentLang === "en" ? "ES" : "EN"}
+                        </a>
+                    </div>
                     <div class="flex flex-col gap-3 items-center">
                         {
                             socials.map((s) => (
@@ -94,12 +104,14 @@ const socials = [
                                         alt={s.aria}
                                         format="svg"
                                         loading="eager"
-                                        class="w-10"
+                                        class="w-8"
                                     />
                                 </a>
                             ))
                         }
                     </div>
+
+                    <!-- Language switch button: / = español, /en = english -->
                 </div>
             </div>
         </div>
@@ -112,7 +124,7 @@ const socials = [
                     <div
                         class="bg-secondary text-lighten px-8 py-2 rounded-[25px] text-xl z-1 hover:bg-accent hover:text-darken cursor-pointer transition duration-300 shadow-md shadow-secondary hover:shadow-accent"
                     >
-                        Contactar
+                        {t("contact")}
                     </div>
                 </a>
             </div>

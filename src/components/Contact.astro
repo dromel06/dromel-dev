@@ -1,16 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import imgLibelula from "../assets/imgs/libelula.png";
+import { languageList } from "../i18n/ui";
+import { useTranslation } from "../i18n/utils";
 
 const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+
+const lang = Astro.currentLocale || "es";
+const t = useTranslation(lang as keyof typeof languageList);
 ---
 
 <section
     id="contact"
     class="relative py-12 bg-primary text-[#DCC9A9] text-center lg:max-w-2xl rounded-[30px] shadow-primary mx-8 lg:mx-auto shadow-md mb-16 px-8"
 >
-    <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-    <p class="mb-6">Necesitas una página web? Escríbeme aquí:</p>
+    <h2 class="text-3xl font-bold mb-4">{t("contact_contact")}</h2>
+    <p class="mb-6">{t("contact_need")}</p>
 
     <div class="flex flex-collg:flex-row gap-8">
         <form class="lg:max-wlg space-y-4" id="form" method="post">
@@ -18,24 +23,24 @@ const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
             <input
                 type="text"
                 name="name"
-                placeholder="Tu nombre"
+                placeholder={t("contact_name")}
                 class="w-full p-2 rounded text-black"
             />
             <input
                 type="email"
                 name="email"
-                placeholder="Tu correo"
                 class="w-full p-2 rounded text-black"
+                placeholder={t("contact_email")}
             />
             <textarea
-                placeholder="Tu mensaje"
+                placeholder={t("contact_message")}
                 name="message"
                 class="w-full p-2 rounded text-black"></textarea>
             <button
                 type="submit"
                 class="bg-secondary text-accent px-6 py-2 rounded font-bold"
             >
-                Enviar
+                {t("contact_send")}
             </button>
         </form>
 

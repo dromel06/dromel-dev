@@ -1,7 +1,10 @@
 ---
-
+import { languageList } from "../i18n/ui";
+import { useTranslation } from "../i18n/utils";
+const currentLang = Astro.currentLocale || "es";
+const t = useTranslation(currentLang as keyof typeof languageList);
 ---
 
 <footer class="bg-secondary text-[#DCC9A9] text-center py-4">
-    © 2025 Dromel Dev. Todos los derechos reservados.
+    {t("footer_reserved")}
 </footer>
