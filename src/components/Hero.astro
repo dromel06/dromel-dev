@@ -5,6 +5,7 @@ import iconGitHub from "../assets/icons/github.svg";
 import iconInstagram from "../assets/icons/instagram.svg";
 import iconLinkedIn from "../assets/icons/linkedin.svg";
 import iconLanguage from "../assets/icons/language.svg";
+import dromeldevLogo from "../assets/icons/dromeldevLogo.svg";
 
 import { languageList } from "../i18n/ui";
 import { useTranslation } from "../i18n/utils";
@@ -45,17 +46,188 @@ const socials = [
             <Image src={iconLanguage} alt="EN/ES" class="w-6" /></a
         >
     </div>
-    <div class="flex flex-col gap-2">
-        <div class="relative mb-8">
+    <div class="flex flex-col">
+        <div class="relative mb-8 flex justify-center">
+            <!-- Add `import dromeldevLogo from "../assets/icons/dromeldevLogo.svg";` to the top frontmatter -->
             <div
-                class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-primary text-lighten inline-block px-6 py-3 rounded-full text-3xl z-1 border-4 border-darken"
+                id="brand-toggle"
+                class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-primary text-lighten inline-flex justify-center items-center gap-3 px-6 py-3 rounded-full z-1 border-4 border-darken cursor-pointer"
+                role="button"
+                aria-pressed="false"
+                tabindex="0"
             >
+                <div
+                    class="logo-wrapper inline-flex items-center justify-center"
+                >
+                    <Image
+                        src={dromeldevLogo}
+                        alt="Dromel Dev logo"
+                        class="w-6 lg:w-10"
+                    />
+                </div>
+
                 <h1
-                    class="text-xl lg:text-3xl text-shadow-accent text-shadow-2xs text-nowrap"
+                    class="text-wrapper lg:block text-xl lg:text-3xl text-shadow-accent text-shadow-2xs text-nowrap"
                 >
                     DROMEL DEV
                 </h1>
             </div>
+
+            <style>
+                /* Mobile-only smooth swap: text <-> logo */
+                @media (max-width: 1023px) {
+                    #brand-toggle {
+                        width: 180px;
+                        height: 52px;
+                        padding: 0.25rem 0.6rem;
+                    }
+
+                    /* Stack both elements on top of each other on mobile */
+                    #brand-toggle .logo-wrapper,
+                    #brand-toggle .text-wrapper {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        transition:
+                            opacity 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                            transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+                        will-change: opacity, transform;
+                        opacity: 1;
+                        pointer-events: auto;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                    }
+
+                    /* initial: show logo */
+                    #brand-toggle:not(.show-text) .logo-wrapper {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                    #brand-toggle:not(.show-text) .text-wrapper {
+                        opacity: 0;
+                        transform: translate(-50%, -58%) scale(0.95);
+                        pointer-events: none;
+                    }
+
+                    /* when showing text */
+                    #brand-toggle.show-text .logo-wrapper {
+                        opacity: 0;
+                        transform: translate(-50%, -42%) scale(0.95);
+                        pointer-events: none;
+                    }
+                    #brand-toggle.show-text .text-wrapper {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1);
+                        pointer-events: auto;
+                    }
+
+                    /* keep desktop appearance for larger screens */
+                }
+
+                @media (min-width: 1024px) {
+                    #brand-toggle .logo-wrapper,
+                    #brand-toggle .text-wrapper {
+                        position: static;
+                        transform: none;
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+                }
+            </style>
+
+            <script type="module">
+                (function () {
+                    const el = document.getElementById("brand-toggle");
+                    if (!el) return;
+
+                    const mobileQuery = window.matchMedia(
+                        "(max-width: 1023px)"
+                    );
+                    let timer = null;
+                    let showingText = false;
+
+                    function prefersReducedMotion() {
+                        return window.matchMedia(
+                            "(prefers-reduced-motion: reduce)"
+                        ).matches;
+                    }
+
+                    function applyState() {
+                        if (showingText) {
+                            el.classList.add("show-text");
+                            el.classList.remove("show-logo");
+                            el.setAttribute("aria-pressed", "true");
+                        } else {
+                            el.classList.remove("show-text");
+                            el.classList.add("show-logo");
+                            el.setAttribute("aria-pressed", "false");
+                        }
+                    }
+
+                    function startAutoSwap() {
+                        if (prefersReducedMotion()) return;
+                        // ensure initial state
+                        showingText = false;
+                        applyState();
+
+                        timer = setInterval(() => {
+                            showingText = !showingText;
+                            applyState();
+                        }, 3000);
+                    }
+
+                    function stopAutoSwap() {
+                        if (timer) {
+                            clearInterval(timer);
+                            timer = null;
+                        }
+                        el.classList.remove("show-text", "show-logo");
+                        el.setAttribute("aria-pressed", "false");
+                    }
+
+                    function handleMediaChange(e) {
+                        if (e.matches) startAutoSwap();
+                        else stopAutoSwap();
+                    }
+
+                    // start if mobile on load
+                    if (mobileQuery.matches) startAutoSwap();
+
+                    // listen for changes
+                    if (typeof mobileQuery.addEventListener === "function") {
+                        mobileQuery.addEventListener(
+                            "change",
+                            handleMediaChange
+                        );
+                    } else {
+                        mobileQuery.addListener(handleMediaChange);
+                    }
+
+                    // allow user toggle by tapping the brand on mobile
+                    el.addEventListener("click", () => {
+                        if (!mobileQuery.matches) return;
+                        // pause auto swap briefly when user interacts
+                        if (timer) {
+                            clearInterval(timer);
+                            timer = null;
+                        }
+                        showingText = !showingText;
+                        applyState();
+                        // resume after a bit
+                        if (!prefersReducedMotion()) {
+                            timer = setTimeout(() => {
+                                timer = setInterval(() => {
+                                    showingText = !showingText;
+                                    applyState();
+                                }, 3000);
+                            }, 5000);
+                        }
+                    });
+                })();
+            </script>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-2">
